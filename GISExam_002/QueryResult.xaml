@@ -1,0 +1,13 @@
+﻿<Window x:Class="GISExam_002.QueryResult"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GISExam_002"
+        mc:Ignorable="d"
+        Title="查询结果" Height="300" Width="220">
+    <Grid>
+        <ComboBox x:Name="comboBoxSelectionCount" Margin="2,8,1.6,0" VerticalAlignment="Top" Width="210" SelectionChanged="ComboBoxSelectionCount_SelectionChanged"/>
+        <DataGrid x:Name="dataGridResult" Margin="0,34,-0.4,-0.6"/>
+    </Grid>
+</Window>

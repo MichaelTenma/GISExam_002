@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{21825EB4-A4EE-4F1F-B479-6E002D2230AC}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GISExam_002</RootNamespace>
     <AssemblyName>GISExam_002</AssemblyName>
@@ -37,6 +37,9 @@
   <PropertyGroup>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -58,6 +61,28 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BufferAnalysis.xaml.cs">
+      <DependentUpon>BufferAnalysis.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Service\BufferService.cs" />
+    <Compile Include="Enum\CustomEnum.cs" />
+    <Compile Include="DI\BeansFactory.cs" />
+    <Compile Include="DI\IOC.cs" />
+    <Compile Include="FeatureEntry.cs" />
+    <Compile Include="Enum\LayerEnum.cs" />
+    <Compile Include="Service\LayerService.cs" />
+    <Compile Include="Enum\POITypeEnum.cs" />
+    <Compile Include="QueryResult.xaml.cs">
+      <DependentUpon>QueryResult.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QuickQueryWindow.xaml.cs">
+      <DependentUpon>QuickQueryWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\EnvelopeUtil.cs" />
+    <Page Include="BufferAnalysis.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -66,11 +91,21 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Utils\DataLoaderUtil.cs" />
+    <Compile Include="LayerEntry.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="MapViewModel.cs" />
+    <Page Include="QueryResult.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QuickQueryWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -90,6 +125,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="data\scau.geodatabase">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -104,6 +142,9 @@
       <Version>100.9.0</Version>
     </PackageReference>
     <PackageReference Include="Esri.ArcGISRuntime">
+      <Version>100.9.0</Version>
+    </PackageReference>
+    <PackageReference Include="Esri.ArcGISRuntime.Toolkit">
       <Version>100.9.0</Version>
     </PackageReference>
     <PackageReference Include="Esri.ArcGISRuntime.WPF">

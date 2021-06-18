@@ -7,10 +7,51 @@
         xmlns:local="clr-namespace:GISExam_002"
         mc:Ignorable="d"
         Title="MainWindow" Height="525" Width="790">
-    <Window.Resources>
-        <local:MapViewModel x:Key="MapViewModel" />
-    </Window.Resources>
     <Grid>
-        <esri:MapView Map="{Binding Map, Source={StaticResource MapViewModel}}" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <esri:MapView x:Name="MainMapView" Map="{Binding Map}" Grid.ColumnSpan="2" Margin="246,27,0,0.2"></esri:MapView>
+        <Menu Grid.Column="1"  VerticalAlignment="Top" Height="27">
+            <!--<MenuItem Header="文件管理" Height="27">
+                <MenuItem Header="加载数据" Click="LoadData"/>
+                <MenuItem Header="加载网络数据集" Click="LoadNetworkDataset"/>
+            </MenuItem>-->
+            <MenuItem Header="POI查询" Height="27">
+                <MenuItem Header="快速查询" Click="QuickQuery"/>
+                <MenuItem Header="点击查询" Click="ClickSelect"/>
+            </MenuItem>
+            <MenuItem Header="统计分析" Height="27">
+                <MenuItem Header="学生人口分布图" Click="PopulationDistribute"/>
+                <MenuItem Header="男女比例图" Click="GenderDistribute"/>
+            </MenuItem>
+            <MenuItem Header="空间分析" Height="27">
+                <MenuItem Header="缓冲区分析" Click="BufferAnalysis"/>
+                <MenuItem Header="选址分析"/>
+            </MenuItem>
+            <MenuItem Header="路径分析" Height="27">
+                <MenuItem Header="最短路径查询"/>
+                <MenuItem Header="校巴路线查询"/>
+                <MenuItem Header="校巴路线规划"/>
+            </MenuItem>
+            <MenuItem Header="校园旅游" Height="27">
+                <MenuItem Header="景点推荐"/>
+                <MenuItem Header="最优赏花路径"/>
+            </MenuItem>
+        </Menu>
+
+        <ListView x:Name="LayerListView" Grid.Column="1" HorizontalAlignment="Left" Width="246" Margin="0,27,0,0.2">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel>
+                        <CheckBox Content="{Binding}" Height="15" IsChecked="{Binding IsChecked}"  Unchecked="LayerEntryCheckboxChecked" Checked="LayerEntryCheckboxChecked"/>
+                    </WrapPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Border BorderBrush="Black" BorderThickness="1" Grid.ColumnSpan="2" Height="31" Margin="246,27,0,0" VerticalAlignment="Top">
+            <esri:MeasureToolbar x:Name="MeasureToolbar"/>
+        </Border>
     </Grid>
 </Window>
